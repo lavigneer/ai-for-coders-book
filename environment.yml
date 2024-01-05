@@ -1,0 +1,4 @@
+name: ai-for-coders-book
+dependencies:
+  - numpy
+  - tensorflow
