@@ -4,11 +4,12 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 training_dir = "/tmp/horse-or-human/"
 validation_dir = "/tmp/validation-horse-or-human/"
 
-train_datagen = ImageDataGenerator(rescale=1/255)
-validation_datagen = ImageDataGenerator(rescale=1/255)
+train_datagen = ImageDataGenerator(rescale=1 / 255)
+validation_datagen = ImageDataGenerator(rescale=1 / 255)
 
-train_generator = train_datagen.flow_from_directory(training_dir, target_size=(300,300), class_mode='binary')
-validation_generator = validation_datagen.flow_from_directory(validation_dir, target_size=(300,300), class_mode='binary')
+train_generator = train_datagen.flow_from_directory(training_dir, target_size=(300, 300), class_mode='binary')
+validation_generator = validation_datagen.flow_from_directory(validation_dir, target_size=(300, 300),
+                                                              class_mode='binary')
 
 model = tf.keras.models.Sequential(
     [
@@ -30,7 +31,7 @@ model = tf.keras.models.Sequential(
 
 model.summary()
 
-model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.RMSprop(learning_rate=0.001), metrics=['accuracy'])
+model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.RMSprop(learning_rate=0.001),
+              metrics=['accuracy'])
 
 history = model.fit(train_generator, epochs=15, validation_data=validation_generator)
-
